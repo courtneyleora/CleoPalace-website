@@ -28,7 +28,47 @@ const addSignature = (event) => {
   newCount.id = 'counter';
   newCount.textContent = `🖊️ ${count} people have signed the petition and supports this cause.`;
   signaturesSection.appendChild(newCount);
+
+
 }
 let count = 3;
 // Add click event listener to the "Sign Now" button
-signNowButton.addEventListener('click',addSignature);
+// signNowButton.addEventListener('click',addSignature);
+
+  // TODO: Remove the click event listener that calls addSignature()
+
+// TODO: Complete validation form
+
+const validateForm = () => {
+
+  let containsErrors = false;
+
+  var petitionInputs = document.getElementById("sign-petition").elements;
+  // TODO: Loop through all inputs
+  for (let i = 0; i < petitionInputs.length; i++) {
+    if (petitionInputs[i].value.length < 2) {
+      containsErrors = true;
+      petitionInputs[i].classList.add('error');
+    }else {
+      petitionInputs[i].classList.remove('error');
+    }
+  }
+  if (containsErrors == false) {
+    addSignature();
+  
+    // Clear input fields and reset containsErrors
+    for (let i = 0; i < petitionInputs.length; i++) {
+      petitionInputs[i].value = "";
+    }
+    containsErrors = false;
+  }
+  
+    }
+  // TODO: Validate the value of each input
+
+
+
+  // TODO: Call addSignature() and clear fields if no errors
+
+
+signNowButton.addEventListener('click', validateForm);
